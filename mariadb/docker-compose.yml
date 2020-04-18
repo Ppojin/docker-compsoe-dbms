@@ -1,0 +1,23 @@
+# Use root/example as user/password credentials
+version: '3.7'
+
+services:
+  mariadb:
+    image: mariadb:latest
+    ports:
+      - 3306:3306
+    volumes:
+      - ./mariadb/mysql.cnf:/etc/mysql/conf.d/mysql.cnf:ro
+      - ./mariadb/data:/var/lib/mysql
+    environment:
+        MYSQL_ROOT_PASSWORD: root
+        # MYSQL_DATABASE: groupboard
+        # MYSQL_USER: admin
+        # MYSQL_PASSWORD: 12345
+
+  mongo:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - ./mongo/data:/data/db
